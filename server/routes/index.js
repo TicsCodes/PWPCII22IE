@@ -9,7 +9,7 @@ router.get('/', function(req, res, next) {
 
   res.render('index', 
   {
-  title: 'Express',
+  title: 'PWPCII-22',
   author: 'IsaacE',
   emoji
 });
