@@ -1,5 +1,4 @@
 //importantdo dependencia path
-const { resolve } = require('path');
 const path = require ('path');
 
 module.exports = {

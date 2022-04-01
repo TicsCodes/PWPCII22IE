@@ -6,8 +6,10 @@
     "start": "node ./dist/bin/www",
     "b:w": "babel-watch ./server/bin/www",
     "cli:ser": "cross-env NODE_ENV=development webpack serve --config ./webpack.dev.config.js --mode development",
-    "clean": "rimraf dist",
-    "bu-s": "npm run clean && babel ./server --out-dir dist --copy-files"
+    "cle:ser": "rimraf dist",
+    "cle:cli": "rimraf public/javascripts/bundle.js && rimraf public/stylesheets/styles.css",
+    "bu:ser": "npm run clean && babel ./server --out-dir dist --copy-files",
+    "bu:cli": "npm run cle:cli && webpack --config ./webpack.config.js --mode production"
   },
 
   "dependencies": {

@@ -1,6 +1,5 @@
 //importantdo dependencia path
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-const { resolve } = require('path');
 const path = require ('path');
 
 module.exports = {
@@ -27,13 +26,17 @@ module.exports = {
                     {
                         loader: 'babel-loader',
                         options: {
-                            presets:[
-                                '@babel/preset-env', {
-                                    modules: false,
-                                    useBuildInst: 'usage',
-                                    targets: '>0.25%, not dead',
-                                    corejs: 3
-                                }
+                            presets: 
+                            [
+                                [
+                                    '@babel/preset-env', 
+                                    {
+                                        modules: false,
+                                        useBuiltIns: 'usage',
+                                        targets: "> 0.55%, not dead",
+                                        corejs: 3
+                                    }
+                                ]
                             ]
                         }
                     }
