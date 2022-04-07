@@ -1,13 +1,30 @@
+//Ayuda a manejar errores de http
 import createError from 'http-errors';
+//ayuda a crear servidores web
 import express from 'express';
+//Nucleo de node, ayuda al manejo de las rutas
 import path from 'path';
+//ayuda al manejo de las cookies
 import cookieParser from 'cookie-parser';
+//Maneja el log de las peticiones de http
 import logger from 'morgan';
 
+//las rutas
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import aboutRouter from './routes/about';
 
+//Importando modulos de webpack
+//nucleo de WP
+import webpack from 'webpack';
+//Permite incrustar wp a express
+import WebpackDevMiddleware from "webpack-dev-middleware";
+//Permite la actualizacion dinamica de la pagina
+import WebpackHotMiddleware from "webpack-hot-middleware";
+// Configuracion
+import webpackConfig from '../webpack.dev.config';
+
+//Aqui se crea la instancia de express
 const app = express();
 
 // view engine setup

@@ -1,4 +1,8 @@
-console.log("👽👽Webpack Working!!!👾👾");
+//Incorporando los estilos a mi bundle
+import './styles/styles.css'
+import './styles/mystyles.css'
+
+console.log("👽👽Webpack Front-end Working!!!👾👾");
 
 //default parameters
 let show = (m = "👾🐉") => {

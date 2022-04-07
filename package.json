@@ -2,9 +2,9 @@
   "name": "projnotes-ie22",
   "version": "0.0.0",
   "private": true,
-  "scripts": {
-    "start": "node ./dist/bin/www",
-    "b:w": "babel-watch ./server/bin/www",
+  "scripts":{
+    "start": "cross-env NODE_ENV=production node ./dist/bin/www",
+    "b:w": "cross-env NODE_ENV=development babel-watch ./server/bin/www",
     "cli:ser": "cross-env NODE_ENV=development webpack serve --config ./webpack.dev.config.js --mode development",
     "cle:ser": "rimraf dist",
     "cle:cli": "rimraf public/javascripts/bundle.js && rimraf public/stylesheets/styles.css",
@@ -12,7 +12,7 @@
     "bu:cli": "npm run cle:cli && webpack --config ./webpack.config.js --mode production"
   },
 
-  "dependencies": {
+  "dependencies":{
     "app-root-path": "^3.0.0",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -26,9 +26,9 @@
     "winston": "^3.6.0"
   },
 
-  "devDependencies": {
+  "devDependencies":{
     "@babel/cli": "^7.17.6",
-    "@babel/core": "^7.17.5",
+    "@babel/core": "^7.17.5", 
     "@babel/node": "^7.16.8",
     "@babel/preset-env": "^7.16.11",
     "babel-eslint": "^10.1.0",
