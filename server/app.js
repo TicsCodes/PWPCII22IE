@@ -27,6 +27,43 @@ import webpackConfig from '../webpack.dev.config';
 //Aqui se crea la instancia de express
 const app = express();
 
+//Recuperar el modo de ejecucion
+const nodeENV = process.env.NODE_ENV || 'development';
+
+//Decidiendo si embebemos el webpack middleware
+if(nodeENV === 'development'){
+  //embebiendo webpack a mi apliccacion
+  console.log('🤖🤖 Ejecutando en Modo Desarrollo🤖🤖');
+
+  //Estableciendo el modo webpack en desarrollo en el configurador
+  webpackConfig.mode ="development";
+
+  //Configurando la ruta del HMR (Hot Module Replacement)
+  //reload=true : Habilita la recarga automatica cuando un archivo js cambia
+  //timeout=1000 : Tiempo de refresco de la pagina
+  webpackConfig.entry = [
+    "webpack-hot-middleware/client?reload=true&timeout=1000",
+    webpackConfig.entry,
+  ];
+  //Agregando el plugin a la configuracion de desarrollo
+  webpackConfig.plugins.push(new webpack.HotModuleReplacementPlugin());
+
+  //Creando el empaquetador a partir de un objeto de configuracion
+  const bundler = webpack(webpackConfig);
+
+  //Habilitando el Middleware de webpack en express
+  app.use(WebpackDevMiddleware(bundler,{
+    publicPath: webpackConfig.output.publicPath
+  }));
+
+  //Habilitando el middleware del WP HMR
+  app.use(WebpackHotMiddleware(bundler));
+
+}else {
+  console.log('👽 Ejecutando en Modo Produccion 👽');
+}
+
+//Configuracion del motor de plantillas (template engine)
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
@@ -39,6 +76,7 @@ app.use(cookieParser());
 // Middleware de archivos estaticos
 app.use(express.static(path.join(__dirname, "..", 'public')));
 
+//Registrando las rutas en la app
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/about', aboutRouter);

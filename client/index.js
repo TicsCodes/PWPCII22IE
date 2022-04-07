@@ -14,8 +14,8 @@ show();
 function resolveAfter2Seconds() {
     return new Promise(resolve =>{
         setTimeout(()=> {
-        resolve('function resolve')
-    }, 2000)
+        resolve('function resolve');
+    }, 10000);
 });
 }
 

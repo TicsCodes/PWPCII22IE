@@ -37,14 +37,14 @@ module.exports = {
                 use: [
                     //4.1.1 Primer stage, Que le hara a las js
                     {
-                        loader: 'babel-loader',
+                        loader: "babel-loader",
                         options: {
                             presets: [
                             [
-                                '@babel/preset-env', 
+                                "@babel/preset-env", 
                                 {
                                     modules: false,
-                                    useBuildInst: 'usage',
+                                    useBuildInst: "usage",
                                     targets: {
                                         "chrome" : "80"
                                     },
