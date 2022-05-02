@@ -43,10 +43,10 @@ module.exports = {
                         options: {
                             presets: [
                             [
-                                "@babel/preset-env", 
+                                '@babel/preset-env', 
                                 {
                                     modules: false,
-                                    useBuildInst: "usage",
+                                    useBuiltIns: 'usage',
                                     targets: {
                                         "chrome" : "80"
                                     },

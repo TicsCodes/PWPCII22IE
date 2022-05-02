@@ -17,7 +17,7 @@ function resolveAfter2Seconds() {
   return new Promise((resolve) => {
     setTimeout(() => {
       // eslint-disable-next-line indent
-            resolve('function resolve');
+      resolve('function resolve');
     }, 10000);
   });
 }
