@@ -4,15 +4,15 @@
  * Module dependencies.
  */
 
-//var app = require('../app');
+// var app = require('../app');
 import app from '@s/app';
-//var debug = require('debug')('projnotes-ie22:server');
-//signofica que esto se esta encadenado, importar y ejecutar lo importado
- import Debug from 'debug';
-//var http = require('http');
+// var debug = require('debug')('projnotes-ie22:server');
+// signofica que esto se esta encadenado, importar y ejecutar lo importado
+import Debug from 'debug';
+// var http = require('http');
 import http from 'http';
 
-//Creando instancia del debugger
+// Creando instancia del debugger
 const debug = Debug('projnotes-ie22:server');
 
 /**
@@ -26,7 +26,7 @@ app.set('port', port);
  * Create HTTP server.
  */
 
- const server = http.createServer(app); 
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
@@ -65,19 +65,17 @@ function onError(error) {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
     case 'EACCES':
-      //console.error(bind + ' requires elevated privileges');//concatenacion de , template strings
+      // console.error(bind + ' requires elevated privileges');//concatenacion de , template strings
       console.error('${bind} requires elevated privileges');
       process.exit(1);
       break;
     case 'EADDRINUSE':
-      //console.error(bind + ' is already in use');
+      // console.error(bind + ' is already in use');
       console.error('${bind} is alredy in use');
       process.exit(1);
       break;
@@ -91,16 +89,15 @@ function onError(error) {
  */
 
 function onListening() {
-  //var addr = server.address();
-  //var bind = typeof addr === 'string'
-    //? 'pipe ' + addr
-    //: 'port ' + addr.port;
-    const addr = server.address();
-    const bind = typeof addr === 'string' 
-    ? 'pipe ${addr}' : 'port ${addr.port}';
+  // var addr = server.address();
+  // var bind = typeof addr === 'string'
+  // ? 'pipe ' + addr
+  // : 'port ' + addr.port;
+  const addr = server.address();
+  const bind = typeof addr === 'string' ? 'pipe ${addr}' : 'port ${addr.port}';
 
-  //debug('Listening on ' + bind);
-debug('Listening on ${bind}');
+  // debug('Listening on ' + bind);
+  debug('Listening on ${bind}');
 
-console.log(`🦖🦬 Servidor escuchando 🐈‍⬛🐲....en ${app.get('port')}`);
+  console.log(`🦖🦬 Servidor escuchando 🐈‍⬛🐲....en ${app.get('port')}`);
 }
