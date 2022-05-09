@@ -1,16 +1,16 @@
 #!/usr/bin/env node
+/* eslint-disable import/no-unresolved */
 
 /**
  * Module dependencies.
  */
-
-// var app = require('../app');
-import app from '@s/app';
+// var http = require('http');
+import http from 'http';
 // var debug = require('debug')('projnotes-ie22:server');
 // signofica que esto se esta encadenado, importar y ejecutar lo importado
 import Debug from 'debug';
-// var http = require('http');
-import http from 'http';
+// var app = require('../app');
+import app from '@s/app';
 
 // Importando nuestro logger
 import winston from '../config/winston';
@@ -19,35 +19,12 @@ import winston from '../config/winston';
 const debug = Debug('projnotes-ie22:server');
 
 /**
- * Get port from environment and store in Express.
- */
-
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
-
-/**
- * Create HTTP server.
- */
-
-const server = http.createServer(app);
-
-/**
- * Listen on provided port, on all network interfaces.
- */
-
-server.listen(port); // Pone al server a escuchar
-// Se registran eventos
-server.on('error', onError); // En caso de error
-server.on('listening', onListening); // Cuando esta escuchando
-
-/**
  * Normalize a port into a number, string, or false.
  */
-
 function normalizePort(val) {
   const port = parseInt(val, 10);
 
-  if (isNaN(port)) {
+  if (Number.isNaN(port)) {
     // named pipe
     return val;
   }
@@ -61,15 +38,21 @@ function normalizePort(val) {
 }
 
 /**
- * Event listener for HTTP server "error" event.
+ * Get port from environment and store in Express.
  */
 
+const port = normalizePort(process.env.PORT || '3000');
+app.set('port', port);
+
+const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
+
+/**
+ * Event listener for HTTP server "error" event.
+ */
 function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
-
-  const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
@@ -89,19 +72,32 @@ function onError(error) {
 }
 
 /**
- * Event listener for HTTP server "listening" event.
+ * Create HTTP server.
  */
 
+const server = http.createServer(app);
+
+/**
+ * Event listener for HTTP server "listening" event.
+ */
 function onListening() {
   // var addr = server.address();
   // var bind = typeof addr === 'string'
   // ? 'pipe ' + addr
   // : 'port ' + addr.port;
   const addr = server.address();
-  const bind = typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
-
+  const bindAr =
+    typeof addr === 'string' ? `pipe ${addr}` : `port ${addr.port}`;
   // debug('Listening on ' + bind);
-  debug(`Listening on ${bind}`);
-
+  debug(`Listening on ${bindAr}`);
   winston.info(`🦖🦬 Servidor escuchando 🐈‍⬛🐲....en ${app.get('port')}`);
 }
+
+/**
+ * Listen on provided port, on all network interfaces.
+ */
+
+server.listen(port); // Pone al server a escuchar
+// Se registran eventos
+server.on('error', onError); // En caso de error
+server.on('listening', onListening); // Cuando esta escuchando
