@@ -10,7 +10,8 @@
     "cle:cli": "rimraf public/javascripts/bundle.js && rimraf public/stylesheets/styles.css",
     "bu:ser": "npm run clean && babel ./server --out-dir dist --copy-files",
     "bu:cli": "npm run cle:cli && webpack --config ./webpack.config.js --mode production",
-    "lint-server": "eslint ./server"
+    "lint-server": "eslint ./server",
+    "clearlogs": "rimraf ./server/logs/*.log"
   },
   "dependencies": {
     "app-root-path": "^3.0.0",

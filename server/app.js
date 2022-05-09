@@ -10,8 +10,6 @@ import path from 'path';
 import cookieParser from 'cookie-parser';
 // Maneja el log de las peticiones de http
 import morgan from 'morgan';
-// Importando nuestro logger
-import winston from '@s/config/winston';
 
 // las rutas
 import webpack from 'webpack';
@@ -20,6 +18,9 @@ import WebpackHotMiddleware from 'webpack-hot-middleware';
 import indexRouter from './routes/index';
 import usersRouter from './routes/users';
 import aboutRouter from './routes/about';
+
+// Importando nuestro logger
+import winston from './config/winston';
 
 // Importando modulos de webpack
 // nucleo de WP
