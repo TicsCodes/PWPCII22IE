@@ -22,6 +22,7 @@
     "express-handlebars": "^6.0.3",
     "hbs": "^4.2.0",
     "http-errors": "~1.6.3",
+    "materialize-css": "^1.0.0-rc.2",
     "morgan": "~1.9.1",
     "rimraf": "^3.0.2",
     "webpack": "^5.70.0",
@@ -50,8 +51,8 @@
     "eslint-plugin-prettier": "^4.0.0",
     "eslint-webpack-plugin": "^3.1.1",
     "mini-css-extract-plugin": "^2.6.0",
-    "prettier": "^2.5.1",    
-    "webpack-cli": "^4.9.2",    
-    "webpack-dev-server": "^4.7.4"    
+    "prettier": "^2.5.1",
+    "webpack-cli": "^4.9.2",
+    "webpack-dev-server": "^4.7.4"
   }
 }
