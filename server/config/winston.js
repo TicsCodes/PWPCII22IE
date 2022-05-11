@@ -1,10 +1,10 @@
-// Importando winston
+// Importar Winston
 import winston, { format } from 'winston';
 
-// Se obtiene la ruta raiz de proyecto
+// Se obtiene la ruta a la raiz de proyecto
 import appRoot from 'app-root-path';
 
-// desestructuro componentes para el formato pezonalizado
+// desestructuro componentes para el formato personalizado
 const { combine, timestamp, label, printf, colorize } = format;
 
 // Definiendo un esquema de colores
@@ -16,86 +16,82 @@ const colors = {
   debug: 'blue',
 };
 
-// Agregando el esquima de colores a winston
+// Agregando el esquema de colores a winston
 winston.addColors(colors);
 
-// creando formato para la cosola
+// Creando formato para la consola
 const myConsoleFormat = combine(
-  // Agrewgando los colores al formato
+  // Agregando colores al formato
   colorize({ all: true }),
-
   // Agregando una etiqueta
   label({ label: '🤖🤖' }),
-
   // Agregando la fecha
   timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
-
-  // funsion de impresion
+  // Funcion de impresión
   printf(
     (info) =>
-      `${info.level}: ${info.level}: ${[info.timestamp]}: ${info.massage}`
+      `${info.level}: ${info.label}: ${[info.timestamp]}: ${info.message}`
   )
 );
 
-// creando formato para archivo
+// Creando formato para archivo
 const myFileFormat = combine(
-  // sin color
+  // Sin color
   format.uncolorize(),
-  // agregando fecha
+  // Agregando la fecha
   timestamp({ format: 'DD-MM-YYYY HH:mm:ss' }),
   // Salida en formato Json
   format.json()
 );
 
-// crear eñ objeto de opciones (options object)
+// Crear el objeto de opciones (options object)
 const options = {
-  infofile: {
+  infoFile: {
     level: 'info',
     filename: `${appRoot}/server/logs/info.log`,
-    handleExeptions: true,
-    maxsize: 5242842,
-    maxfiles: 5,
+    handleExceptions: false,
+    maxsize: 5242880, // 5MB
+    maxFiles: 5,
     format: myFileFormat,
   },
-  warnfile: {
+  warnFile: {
     level: 'warn',
     filename: `${appRoot}/server/logs/warn.log`,
-    handleExeptions: true,
-    maxsize: 5242842,
-    maxfiles: 5,
+    handleExceptions: false,
+    maxsize: 5242880, // 5MB
+    maxFiles: 5,
     format: myFileFormat,
   },
-  errorfile: {
-    level: 'infoerror',
+  errorFile: {
+    level: 'error',
     filename: `${appRoot}/server/logs/error.log`,
-    handleExeptions: true,
-    maxsize: 5242842,
-    maxfiles: 5,
+    handleExceptions: true,
+    maxsize: 5242880, // 5MB
+    maxFiles: 5,
     format: myFileFormat,
   },
   console: {
     level: 'debug',
-    handleExeptions: true,
+    handleExceptions: true,
     format: myConsoleFormat,
   },
 };
 
-// creamos una instancia de logger
+// Creamos una instancia del logger
 const logger = winston.createLogger({
   transports: [
-    new winston.transports.File(options.infofile),
-    new winston.transports.File(options.infowarn),
-    new winston.transports.File(options.infoerror),
-    new winston.transports.Console(options.infodebug),
+    new winston.transports.File(options.infoFile),
+    new winston.transports.File(options.warnFile),
+    new winston.transports.File(options.errorFile),
+    new winston.transports.Console(options.console),
   ],
-  exitOnError: false, // no finalizza en exepcoiones no manejadas;
+  exitOnError: false, // No finaliza en excepciones no manejadas
 });
 
-// morgan ---> consola
-// Morgan---> [winston] ---> [transportes]
-// Estableciendo un flujo de tranajo que servira
-// para interpretarel logger de margan
-
+// Morgan ---> consola
+// Morgan ---> [winston] ---> [transportes]
+// Estableciendo un flujo de entrada que servira
+// para interceptar el log de morgan
 logger.stream = {
   write(message) {
     logger.info(message);
