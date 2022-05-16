@@ -1,15 +1,15 @@
 #!/usr/bin/env node
-/* eslint-disable import/no-unresolved */
-
 /**
  * Module dependencies.
  */
+
 // var http = require('http');
 import http from 'http';
 // var debug = require('debug')('projnotes-ie22:server');
 // signofica que esto se esta encadenado, importar y ejecutar lo importado
 import Debug from 'debug';
 // var app = require('../app');
+// eslint-disable-next-line import/no-unresolved
 import app from '@s/app';
 
 // Importando nuestro logger

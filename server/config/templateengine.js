@@ -1,11 +1,12 @@
-// importamos dependencias
+// Importamos el motor handlebars
 import ExpHbs from 'express-handlebars';
-// importando el administrador de rutas
+// Importamos el administrador de rutas
 import path from 'path';
 
-// exportando funcion de configuracion
+// Exportando funcion de configuracion
+// app: Es una instancia de express
 export default (app) => {
-  // 1 registro el motor de plantillas
+  // 1 Registro el motor de plantillas
   app.engine(
     'hbs',
     ExpHbs({
@@ -14,12 +15,12 @@ export default (app) => {
     })
   );
 
-  // 2 establecer el motor de plantillas
+  // 2 Establecer el motor de plantillas
   app.set('view engine', 'hbs');
 
-  // 3 estableciendo la ruta de las vistas
+  // 3 Estableciendo la ruta de las vistas
   app.set('views', path.join(__dirname, '..', 'views'));
 
-  // Retornando la referencia de la instancia de express
+  // Retornado la referencia de la instancia de express
   return app;
 };

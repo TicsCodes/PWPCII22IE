@@ -8,8 +8,12 @@
     <link rel="stylesheet" href="/stylesheets/styles.css">
   </head>
   <body>
+    {{!-- Llamando a la vista parcial de la navbar --}}
+    {{>_navbar}}
+    <div class="conteiner">
     {{{body}}}
-    >!--script de materialize-->
+    </div>
+    <!--script de materialize-->
 <script src="/vendor/materialize/js/materialize.min"></script>
     <script src="/javascripts/bundle.js"></script>
 </body>
