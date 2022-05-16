@@ -16,7 +16,7 @@ import webpack from 'webpack';
 import WebpackDevMiddleware from 'webpack-dev-middleware';
 import WebpackHotMiddleware from 'webpack-hot-middleware';
 // Importando configurador de plantillas
-import templateengineConfigurator from './config/templateengine';
+import templateengineConfigurator from './config/templateEngine';
 // Importando Enrutador Principal
 import router from './routes/router';
 
