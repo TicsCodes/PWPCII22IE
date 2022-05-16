@@ -10,7 +10,7 @@ const index = (req, res) => {
     author: 'Isaac Estrada',
     emoji,
   };
-  res.render('index', viewModel);
+  res.render('home/indexView', viewModel);
 };
 
 // URL: Get /about
