@@ -15,6 +15,9 @@ import app from '@s/app';
 // Importando nuestro logger
 import winston from '../config/winston';
 
+// Importando el objeto de las llaves de configuracion
+import configKeys from '../config/configKeys';
+
 // Creando instancia del debugger
 const debug = Debug('projnotes-ie22:server');
 
@@ -41,7 +44,7 @@ function normalizePort(val) {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
+const port = normalizePort(configKeys.port || '5000');
 app.set('port', port);
 
 const bind = typeof port === 'string' ? `Pipe ${port}` : `Port ${port}`;

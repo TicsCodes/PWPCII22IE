@@ -19,6 +19,9 @@ const about = (req, res) => {
     name: 'Isaac Estrada',
     email: 'isaacitgam@gmail.com',
     url: 'https://github.com/TicsCodes/PWPCII22IE',
+    description:
+      'Aplicación que te permitirá registrar las ideas de proyectos que vengan de tu mente, PwpcII',
+    version: '0.0.alpha',
   });
 };
 
