@@ -11,8 +11,6 @@
     "node": true
   },
   "settings": {
-    "import/resolver": {
-      "babel-module": {}
-    }
+    "import/resolver": {"babel-module": {}}
   }
 }
