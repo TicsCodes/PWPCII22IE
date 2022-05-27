@@ -14,4 +14,3 @@ router.get('/about', homeController.about);
 
 // Exportando Router
 export default router;
-
