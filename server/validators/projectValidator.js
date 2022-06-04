@@ -19,4 +19,4 @@ const getProject = (req) => {
   };
 };
 
-export { projectSchema, getProject };
+export default { projectSchema, getProject };
